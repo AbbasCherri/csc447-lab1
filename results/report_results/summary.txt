@@ -13,32 +13,32 @@ Data checks:
   OK: every case marked correct, team sizes match, medians are the 3rd sorted time
 
 --- medium dataset ---
-Sequential median: 0.045869 s
-Fastest configuration: OpenMP with 8 threads at 0.008112 s
-Best parallel case:  OpenMP, 8 threads, speedup 5.654
-Worst parallel case: Pthreads, 2 threads, speedup 1.638
-Average run-to-run spread (max-min over median): 14.1%
+Sequential median: 0.042353 s
+Fastest configuration: OpenMP with 8 threads at 0.007698 s
+Best parallel case:  OpenMP, 8 threads, speedup 5.502
+Worst parallel case: Pthreads, 2 threads, speedup 1.523
+Average run-to-run spread (max-min over median): 11.1%
 Speedup beyond the noise level? YES
 Per version (threads: median s / speedup / efficiency):
-  Pthreads  2: 0.028005 / 1.638 / 0.82   4: 0.015378 / 2.983 / 0.75   8: 0.009877 / 4.644 / 0.58
-  OpenMP    2: 0.022378 / 2.050 / 1.02   4: 0.011995 / 3.824 / 0.96   8: 0.008112 / 5.654 / 0.71
+  Pthreads  2: 0.027803 / 1.523 / 0.76   4: 0.016322 / 2.595 / 0.65   8: 0.009323 / 4.543 / 0.57
+  OpenMP    2: 0.024979 / 1.696 / 0.85   4: 0.012543 / 3.377 / 0.84   8: 0.007698 / 5.502 / 0.69
 
 --- large dataset ---
-Sequential median: 0.174826 s
-Fastest configuration: Pthreads with 8 threads at 0.033169 s
-Best parallel case:  Pthreads, 8 threads, speedup 5.271
-Worst parallel case: Pthreads, 2 threads, speedup 1.798
-Average run-to-run spread (max-min over median): 8.3%
+Sequential median: 0.189139 s
+Fastest configuration: OpenMP with 8 threads at 0.032060 s
+Best parallel case:  OpenMP, 8 threads, speedup 5.900
+Worst parallel case: Pthreads, 2 threads, speedup 1.852
+Average run-to-run spread (max-min over median): 9.5%
 Speedup beyond the noise level? YES
 Per version (threads: median s / speedup / efficiency):
-  Pthreads  2: 0.097244 / 1.798 / 0.90   4: 0.053825 / 3.248 / 0.81   8: 0.033169 / 5.271 / 0.66
-  OpenMP    2: 0.089250 / 1.959 / 0.98   4: 0.049013 / 3.567 / 0.89   8: 0.034424 / 5.079 / 0.63
+  Pthreads  2: 0.102135 / 1.852 / 0.93   4: 0.051851 / 3.648 / 0.91   8: 0.033263 / 5.686 / 0.71
+  OpenMP    2: 0.094909 / 1.993 / 1.00   4: 0.049519 / 3.820 / 0.95   8: 0.032060 / 5.900 / 0.74
 
 --- More data ---
-Sequential time went from 0.045869 s (medium) to 0.174826 s (large): a factor of 3.81
-  Pthreads 2 threads: speedup 1.638 -> 1.798
-  Pthreads 4 threads: speedup 2.983 -> 3.248
-  Pthreads 8 threads: speedup 4.644 -> 5.271
-  OpenMP 2 threads: speedup 2.050 -> 1.959
-  OpenMP 4 threads: speedup 3.824 -> 3.567
-  OpenMP 8 threads: speedup 5.654 -> 5.079
+Sequential time went from 0.042353 s (medium) to 0.189139 s (large): a factor of 4.47
+  Pthreads 2 threads: speedup 1.523 -> 1.852
+  Pthreads 4 threads: speedup 2.595 -> 3.648
+  Pthreads 8 threads: speedup 4.543 -> 5.686
+  OpenMP 2 threads: speedup 1.696 -> 1.993
+  OpenMP 4 threads: speedup 3.377 -> 3.820
+  OpenMP 8 threads: speedup 5.502 -> 5.900

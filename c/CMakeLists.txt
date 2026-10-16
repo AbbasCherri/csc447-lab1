@@ -2,7 +2,13 @@ cmake_minimum_required(VERSION 3.16)
 project(csc447_lab1 C)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -Wall -Wextra")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+
+# One optimization level for every build type and every program.
+set(CMAKE_C_FLAGS_RELEASE "-O2")
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 
 find_package(Threads REQUIRED)
 find_package(OpenMP REQUIRED)

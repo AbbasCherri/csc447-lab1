@@ -1,0 +1,44 @@
+RESULTS SUMMARY
+============================================================
+
+Machine (from results/system_info.txt):
+  CPU model     : 13th Gen Intel(R) Core(TM) i7-1370P
+  Logical CPUs  : 20   (CPUs visible inside the container)
+  Threads/core  : 1
+  Cores/socket  : 20
+  OS            : Ubuntu 24.04.5 LTS (container)
+  Compiler      : gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+
+Data checks:
+  OK: every case marked correct, team sizes match, medians are the 3rd sorted time
+
+--- medium dataset ---
+Sequential median: 0.051014 s
+Fastest configuration: Pthreads with 8 threads at 0.009507 s
+Best parallel case:  Pthreads, 8 threads, speedup 5.366
+Worst parallel case: OpenMP, 2 threads, speedup 1.750
+Average run-to-run spread (max-min over median): 27.7%
+Speedup beyond the noise level? YES
+Per version (threads: median s / speedup / efficiency):
+  Pthreads  2: 0.028000 / 1.822 / 0.91   4: 0.014325 / 3.561 / 0.89   8: 0.009507 / 5.366 / 0.67
+  OpenMP    2: 0.029159 / 1.750 / 0.87   4: 0.019754 / 2.582 / 0.65   8: 0.011798 / 4.324 / 0.54
+
+--- large dataset ---
+Sequential median: 0.179400 s
+Fastest configuration: OpenMP with 8 threads at 0.040778 s
+Best parallel case:  OpenMP, 8 threads, speedup 4.399
+Worst parallel case: OpenMP, 2 threads, speedup 1.334
+Average run-to-run spread (max-min over median): 12.5%
+Speedup beyond the noise level? YES
+Per version (threads: median s / speedup / efficiency):
+  Pthreads  2: 0.099370 / 1.805 / 0.90   4: 0.053174 / 3.374 / 0.84   8: 0.062016 / 2.893 / 0.36
+  OpenMP    2: 0.134525 / 1.334 / 0.67   4: 0.062064 / 2.891 / 0.72   8: 0.040778 / 4.399 / 0.55
+
+--- More data ---
+Sequential time went from 0.051014 s (medium) to 0.179400 s (large): a factor of 3.52
+  Pthreads 2 threads: speedup 1.822 -> 1.805
+  Pthreads 4 threads: speedup 3.561 -> 3.374
+  Pthreads 8 threads: speedup 5.366 -> 2.893
+  OpenMP 2 threads: speedup 1.750 -> 1.334
+  OpenMP 4 threads: speedup 2.582 -> 2.891
+  OpenMP 8 threads: speedup 4.324 -> 4.399

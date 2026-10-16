@@ -1,130 +1,130 @@
 {
   "datasets": {
     "medium": {
-      "sequential_median_s": 0.051014,
+      "sequential_median_s": 0.045869,
       "fastest_overall": {
-        "version": "Pthreads",
+        "version": "OpenMP",
         "threads": 8,
-        "median_s": 0.009507,
-        "speedup": 5.365940885663195
+        "median_s": 0.008112,
+        "speedup": 5.654462524654833
       },
       "best_parallel": {
-        "version": "Pthreads",
+        "version": "OpenMP",
         "threads": 8,
-        "median_s": 0.009507,
-        "speedup": 5.365940885663195
+        "median_s": 0.008112,
+        "speedup": 5.654462524654833
       },
       "worst_parallel": {
-        "version": "OpenMP",
+        "version": "Pthreads",
         "threads": 2,
-        "median_s": 0.029159,
-        "speedup": 1.7495113001131724
+        "median_s": 0.028005,
+        "speedup": 1.637886091769327
       },
-      "avg_run_to_run_spread_pct": 27.69964295038974,
+      "avg_run_to_run_spread_pct": 14.137321012897461,
       "by_version": {
         "Pthreads": [
           {
             "threads": 2,
-            "median_s": 0.028,
-            "speedup": 1.8219285714285713,
-            "efficiency": 0.9109642857142857
+            "median_s": 0.028005,
+            "speedup": 1.637886091769327,
+            "efficiency": 0.8189430458846635
           },
           {
             "threads": 4,
-            "median_s": 0.014325,
-            "speedup": 3.5611867364746947,
-            "efficiency": 0.8902966841186737
+            "median_s": 0.015378,
+            "speedup": 2.9827675900637276,
+            "efficiency": 0.7456918975159319
           },
           {
             "threads": 8,
-            "median_s": 0.009507,
-            "speedup": 5.365940885663195,
-            "efficiency": 0.6707426107078994
+            "median_s": 0.009877,
+            "speedup": 4.64402146400729,
+            "efficiency": 0.5805026830009112
           }
         ],
         "OpenMP": [
           {
             "threads": 2,
-            "median_s": 0.029159,
-            "speedup": 1.7495113001131724,
-            "efficiency": 0.8747556500565862
+            "median_s": 0.022378,
+            "speedup": 2.0497363481991244,
+            "efficiency": 1.0248681740995622
           },
           {
             "threads": 4,
-            "median_s": 0.019754,
-            "speedup": 2.582464311025615,
-            "efficiency": 0.6456160777564037
+            "median_s": 0.011995,
+            "speedup": 3.8240100041684033,
+            "efficiency": 0.9560025010421008
           },
           {
             "threads": 8,
-            "median_s": 0.011798,
-            "speedup": 4.323953212408883,
-            "efficiency": 0.5404941515511104
+            "median_s": 0.008112,
+            "speedup": 5.654462524654833,
+            "efficiency": 0.7068078155818541
           }
         ]
       },
       "any_clear_speedup": true
     },
     "large": {
-      "sequential_median_s": 0.1794,
+      "sequential_median_s": 0.174826,
       "fastest_overall": {
-        "version": "OpenMP",
+        "version": "Pthreads",
         "threads": 8,
-        "median_s": 0.040778,
-        "speedup": 4.3994310657707585
+        "median_s": 0.033169,
+        "speedup": 5.270764870813109
       },
       "best_parallel": {
-        "version": "OpenMP",
+        "version": "Pthreads",
         "threads": 8,
-        "median_s": 0.040778,
-        "speedup": 4.3994310657707585
+        "median_s": 0.033169,
+        "speedup": 5.270764870813109
       },
       "worst_parallel": {
-        "version": "OpenMP",
+        "version": "Pthreads",
         "threads": 2,
-        "median_s": 0.134525,
-        "speedup": 1.3335811187511615
+        "median_s": 0.097244,
+        "speedup": 1.797807576817079
       },
-      "avg_run_to_run_spread_pct": 12.480577428010108,
+      "avg_run_to_run_spread_pct": 8.27367973623996,
       "by_version": {
         "Pthreads": [
           {
             "threads": 2,
-            "median_s": 0.09937,
-            "speedup": 1.8053738552883165,
-            "efficiency": 0.9026869276441583
+            "median_s": 0.097244,
+            "speedup": 1.797807576817079,
+            "efficiency": 0.8989037884085395
           },
           {
             "threads": 4,
-            "median_s": 0.053174,
-            "speedup": 3.373829315078798,
-            "efficiency": 0.8434573287696995
+            "median_s": 0.053825,
+            "speedup": 3.2480445889456577,
+            "efficiency": 0.8120111472364144
           },
           {
             "threads": 8,
-            "median_s": 0.062016,
-            "speedup": 2.8928018575851393,
-            "efficiency": 0.3616002321981424
+            "median_s": 0.033169,
+            "speedup": 5.270764870813109,
+            "efficiency": 0.6588456088516387
           }
         ],
         "OpenMP": [
           {
             "threads": 2,
-            "median_s": 0.134525,
-            "speedup": 1.3335811187511615,
-            "efficiency": 0.6667905593755807
+            "median_s": 0.08925,
+            "speedup": 1.9588347338935577,
+            "efficiency": 0.9794173669467788
           },
           {
             "threads": 4,
-            "median_s": 0.062064,
-            "speedup": 2.8905645784996135,
-            "efficiency": 0.7226411446249034
+            "median_s": 0.049013,
+            "speedup": 3.56693122232877,
+            "efficiency": 0.8917328055821925
           },
           {
             "threads": 8,
-            "median_s": 0.040778,
-            "speedup": 4.3994310657707585,
-            "efficiency": 0.5499288832213448
+            "median_s": 0.034424,
+            "speedup": 5.078607947943295,
+            "efficiency": 0.6348259934929119
           }
         ]
       },
@@ -135,6 +135,6 @@
   "scaling": {
     "from": "medium",
     "to": "large",
-    "sequential_time_ratio": 3.51668169522092
+    "sequential_time_ratio": 3.811419477206828
   }
 }

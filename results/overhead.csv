@@ -1,7 +1,7 @@
 version,threads,median_ms
-pthreads,2,0.2658
-openmp,2,0.0015
-pthreads,4,0.2037
-openmp,4,0.0022
-pthreads,8,0.3177
-openmp,8,0.0035
+pthreads,2,0.5045
+openmp,2,0.0030
+pthreads,4,0.3419
+openmp,4,0.0046
+pthreads,8,1.0739
+openmp,8,0.0039

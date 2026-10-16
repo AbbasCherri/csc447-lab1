@@ -20,3 +20,6 @@ target_link_libraries(pthreads PRIVATE Threads::Threads)
 
 add_executable(openmp openmp.c common.h)
 target_link_libraries(openmp PRIVATE OpenMP::OpenMP_C)
+
+add_executable(overhead overhead.c)
+target_link_libraries(overhead PRIVATE Threads::Threads OpenMP::OpenMP_C)

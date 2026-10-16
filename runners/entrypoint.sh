@@ -19,6 +19,9 @@ for v in ['sequential','pthreads','openmp']:
     print(f"{v}: matches expected_small.csv -> {g==e}")
 PY
     ;;
+  edge)
+    DATA_DIR=/data /app/tests/edge_cases.sh $BIN
+    ;;
   all)
     {
       echo "CPU model     : $(lscpu | sed -n 's/^Model name: *//p')"
@@ -31,6 +34,7 @@ PY
     for f in temperatures_medium.csv temperatures_large.csv expected_summary.csv; do
       [ -f /data/$f ] || { echo "Missing /data/$f - mount your csv folder with -v"; exit 1; }
     done
+    DATA_DIR=/data /app/tests/edge_cases.sh $BIN
     python3 /app/python/bench.py
     ./overhead | tee overhead.csv
     cd /

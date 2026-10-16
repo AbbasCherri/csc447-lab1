@@ -7,8 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 COPY c/ ./c/
 COPY python/ ./python/
+COPY tests/ ./tests/
 COPY runners/entrypoint.sh ./
-RUN chmod +x entrypoint.sh \
+RUN chmod +x entrypoint.sh tests/edge_cases.sh \
     && cmake -S c -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build
 

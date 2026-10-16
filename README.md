@@ -41,3 +41,9 @@ Give Docker all your CPU cores before running, or the 8-thread runs will share c
 All programs are built with `gcc -O2` (set in `c/CMakeLists.txt`, including the Release build the Docker image uses). The OpenMP version uses `schedule(static)`, disables dynamic teams, and records the real team size, which `bench.py` writes to `threads_actual`.
 
 Each program asks for a file name, and the parallel ones also ask for a thread count.
+
+## Edge-case tests
+
+    tests/edge_cases.sh
+
+Checks all three programs on a CRLF file with no final newline, a room of exactly 30s, an all-hot room, a one-room file, more threads than rooms, and a row with too few readings. It also runs ThreadSanitizer on the Pthreads and OpenMP programs. TSan reports races for OpenMP because libgomp's barrier is not instrumented. The reported writes and reads are separated by the parallel region's implicit barrier, so these are false positives and the script only fails on Pthreads reports.

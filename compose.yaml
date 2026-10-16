@@ -1,8 +1,0 @@
-services:
-  lab1:
-    build: .
-    image: csc447-lab1
-    volumes:
-      - ./data:/data
-      - ./results:/results
-    command: ["all"]

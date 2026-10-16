@@ -31,10 +31,10 @@ PY
     for f in temperatures_medium.csv temperatures_large.csv expected_summary.csv; do
       [ -f /data/$f ] || { echo "Missing /data/$f - mount your csv folder with -v"; exit 1; }
     done
-    python3 /app/bench.py
+    python3 /app/python/bench.py
     cd /
-    python3 /app/make_results.py
-    python3 /app/make_figures.py
+    python3 /app/python/make_results.py
+    python3 /app/python/make_figures.py
     ;;
   sequential|pthreads|openmp) exec ./$1 ;;
   shell) exec bash ;;

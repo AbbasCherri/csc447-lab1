@@ -3,17 +3,23 @@
 Folder layout:
 
     csc447-lab1/
-      Dockerfile  CMakeLists.txt  run.sh  bench.py
-      common.h  sequential.c  pthreads.c  openmp.c
+      c/         common.h  sequential.c  pthreads.c  openmp.c  CMakeLists.txt
+      python/    bench.py  make_results.py  make_figures.py
+      docker/    Dockerfile  compose.yaml
+      runners/   run.sh  entrypoint.sh
       data/      <- put the csv files here (small is already in)
       results/   <- output lands here
+
+Everything in one command (build, small check, benchmark, tables, figures):
+
+    ./runners/run.sh
 
 Copy `temperatures_medium.csv`, `temperatures_large.csv`, `expected_summary.csv`
 (and the others if missing) into `data/`.
 
 ## 1. Build the image
 
-    docker build -t csc447-lab1 .
+    docker build -f docker/Dockerfile -t csc447-lab1 .
 
 ## 2. Check correctness on the small file
 
@@ -37,7 +43,7 @@ Same for `sequential` and `pthreads`.
 
 ## 5. Without Docker (plain CMake)
 
-    cmake -S . -B build && cmake --build build
+    cmake -S c -B build && cmake --build build
     ./build/sequential
 
 ## Things to know for fair timings

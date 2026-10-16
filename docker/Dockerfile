@@ -5,9 +5,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY CMakeLists.txt common.h sequential.c pthreads.c openmp.c bench.py make_results.py make_figures.py entrypoint.sh ./
+COPY c/ ./c/
+COPY python/ ./python/
+COPY runners/entrypoint.sh ./
 RUN chmod +x entrypoint.sh \
-    && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+    && cmake -S c -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build
 
 VOLUME ["/data", "/results"]

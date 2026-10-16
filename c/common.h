@@ -110,10 +110,19 @@ static int load_csv(const char *filename, Dataset *ds)
         if (line[0] >= '0' && line[0] <= '9')
             rooms++;
 
+    if (rooms == 0 || cols == 0) {
+        fprintf(stderr, "%s has no data rows or no readings\n", filename);
+        free(line);
+        fclose(f);
+        return -1;
+    }
+
     ds->ids   = malloc(rooms * sizeof(int));
     ds->temps = malloc((size_t)rooms * cols * sizeof(int));
     if (!ds->ids || !ds->temps) {
         perror("malloc");
+        free(line);
+        fclose(f);
         return -1;
     }
 
@@ -127,8 +136,16 @@ static int load_csv(const char *filename, Dataset *ds)
 
         char *end;
         ds->ids[r] = (int)strtol(line, &end, 10);
-        for (int i = 0; i < cols; i++)
+        for (int i = 0; i < cols; i++) {
+            if (*end != ',') {
+                fprintf(stderr, "%s: room %d has fewer than %d readings\n",
+                        filename, ds->ids[r], cols);
+                free(line);
+                fclose(f);
+                return -1;
+            }
             ds->temps[(size_t)r * cols + i] = (int)strtol(end + 1, &end, 10);
+        }
         r++;
     }
 

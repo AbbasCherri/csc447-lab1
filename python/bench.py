@@ -32,9 +32,10 @@ def run(prog, fname, p=None):
     actual = p
     for l in out.splitlines():
         if l.startswith("ACTUAL_THREADS,"):
-            actual = int(l.split(",")[1])
-    if p and actual != p:
-        print(f"  WARNING: {prog} requested {p} threads, got {actual}", flush=True)
+            lo, hi = (int(x) for x in l.split(",")[1:3])
+            if lo != hi or lo != p:
+                raise SystemExit(f"{prog} requested {p} threads, team size {lo}..{hi}")
+            actual = lo
     return times, median, actual
 
 rows = []

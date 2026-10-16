@@ -46,4 +46,6 @@ Each program asks for a file name, and the parallel ones also ask for a thread c
 
     tests/edge_cases.sh
 
+`./runners/run.sh` runs these automatically before the benchmark and stops if one fails. Inside Docker you can run them alone with `docker compose -f docker/compose.yaml run --rm lab1 edge`.
+
 Checks all three programs on a CRLF file with no final newline, a room of exactly 30s, an all-hot room, a one-room file, more threads than rooms, and a row with too few readings. It also runs ThreadSanitizer on the Pthreads and OpenMP programs. TSan reports races for OpenMP because libgomp's barrier is not instrumented. The reported writes and reads are separated by the parallel region's implicit barrier, so these are false positives and the script only fails on Pthreads reports.

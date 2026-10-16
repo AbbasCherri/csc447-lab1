@@ -6,3 +6,4 @@ results/openmp
 results/ref_sequential.csv
 results/results_*.csv
 __pycache__/
+.vscode/

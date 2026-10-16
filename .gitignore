@@ -1,0 +1,8 @@
+data/temperatures_medium.csv
+data/temperatures_large.csv
+results/sequential
+results/pthreads
+results/openmp
+results/ref_sequential.csv
+results/results_*.csv
+__pycache__/

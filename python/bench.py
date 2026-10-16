@@ -29,12 +29,18 @@ def run(prog, fname, p=None):
     line = [l for l in out.splitlines() if l.startswith("RESULT,")][0].split(",")
     times = [float(x) for x in line[4:9]]
     median = float(line[9])
-    return times, median
+    actual = p
+    for l in out.splitlines():
+        if l.startswith("ACTUAL_THREADS,"):
+            actual = int(l.split(",")[1])
+    if p and actual != p:
+        print(f"  WARNING: {prog} requested {p} threads, got {actual}", flush=True)
+    return times, median, actual
 
 rows = []
 for fname in files:
     print(fname, flush=True)
-    seq_t, seq_m = run("sequential", fname)
+    seq_t, seq_m, _ = run("sequential", fname)
     ok_seq = check_totals(fname, "results_sequential.csv")
     os.replace("results_sequential.csv", "ref_sequential.csv")
     print(f"  sequential  median {seq_m:.6f}  totals ok: {ok_seq}", flush=True)
@@ -42,13 +48,13 @@ for fname in files:
 
     for prog in ["pthreads", "openmp"]:
         for p in threads:
-            t, m = run(prog, fname, p)
+            t, m, actual = run(prog, fname, p)
             res_file = f"results_{prog}.csv"
             same = open(res_file).read() == open("ref_sequential.csv").read()
             ok = same and check_totals(fname, res_file)
             sp = seq_m / m
             print(f"  {prog:10s} P={p}  median {m:.6f}  speedup {sp:.3f}  correct: {ok}", flush=True)
-            rows.append([fname, prog, p, p] + t + [m, sp, ok])
+            rows.append([fname, prog, p, actual] + t + [m, sp, ok])
 
 with open("benchmark_results.csv", "w", newline="") as f:
     w = csv.writer(f)

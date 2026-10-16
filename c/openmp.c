@@ -13,6 +13,17 @@ int main(void)
     printf("Loaded %d rooms with %d readings each\n", ds.rooms, ds.cols);
     printf("Using %d OpenMP threads\n", P);
 
+    /* Measure the real team size outside the timed section. */
+    omp_set_dynamic(0);
+    int actual_threads = 0;
+    #pragma omp parallel num_threads(P)
+    {
+        #pragma omp single
+        actual_threads = omp_get_num_threads();
+    }
+    printf("Requested: %d  Actual team size: %d\n", P, actual_threads);
+    printf("ACTUAL_THREADS,%d\n", actual_threads);
+
     RoomResult *res = malloc(ds.rooms * sizeof(RoomResult));
     if (!res) {
         perror("malloc");
@@ -24,7 +35,7 @@ int main(void)
     for (int run = 0; run < NUM_RUNS; run++) {
         double start = omp_get_wtime();
 
-        #pragma omp parallel for num_threads(P)
+        #pragma omp parallel for num_threads(P) schedule(static)
         for (int r = 0; r < ds.rooms; r++)
             analyze_room(ds.temps + (size_t)r * ds.cols, ds.cols, &res[r]);
 

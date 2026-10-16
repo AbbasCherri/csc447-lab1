@@ -55,10 +55,17 @@ int main(void)
             jobs[t].first = next;
             jobs[t].last  = next + count;
             next += count;
-            pthread_create(&tids[t], NULL, worker, &jobs[t]);
+            if (pthread_create(&tids[t], NULL, worker, &jobs[t]) != 0) {
+                fprintf(stderr, "pthread_create failed for thread %d\n", t);
+                return 1;
+            }
         }
-        for (int t = 0; t < P; t++)
-            pthread_join(tids[t], NULL);
+        for (int t = 0; t < P; t++) {
+            if (pthread_join(tids[t], NULL) != 0) {
+                fprintf(stderr, "pthread_join failed for thread %d\n", t);
+                return 1;
+            }
+        }
 
         compute_totals(&tot, res, ds.rooms);
         times[run] = now_seconds() - start;

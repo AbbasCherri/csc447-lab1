@@ -1,0 +1,13 @@
+room_id,hot_readings,longest_hot_run,category,test_case
+0,0,0,Normal,All readings are at most 30
+1,2,1,Watch,Separated hot readings
+2,3,3,Urgent,Exactly three consecutive hot readings
+3,0,0,Normal,Exactly 30 is not hot
+4,4,2,Watch,A reading of 30 breaks a hot streak
+5,3,3,Urgent,Hot streak at the end of a row
+6,3,3,Urgent,Hot streak at the beginning of a row
+7,8,8,Urgent,Every reading is hot
+8,4,1,Watch,Repeated single hot readings
+9,2,2,Watch,Two hot readings at the end of a row
+10,1,1,Watch,Do not join this row to the previous row
+11,6,3,Urgent,Several hot streaks of different lengths

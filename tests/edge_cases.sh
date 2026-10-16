@@ -4,6 +4,7 @@
 set -u
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 BIN=${1:-}
+DATA_DIR=${DATA_DIR:-$ROOT/data}
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
 fail=0
@@ -54,8 +55,10 @@ for prog in pthreads openmp; do
     flags="-O1 -g -fsanitize=thread"
     [ $prog = openmp ] && flags="$flags -fopenmp" || flags="$flags -pthread"
     gcc $flags "$ROOT/c/$prog.c" -o "tsan_$prog" 2>/dev/null || { echo "SKIP  tsan $prog (build failed)"; continue; }
-    printf "%s\n4\n" "$ROOT/data/temperatures_small.csv" | "./tsan_$prog" > tsan.txt 2>&1
-    if grep -q "WARNING: ThreadSanitizer" tsan.txt; then
+    printf "%s\n4\n" "$DATA_DIR/temperatures_small.csv" | "./tsan_$prog" > tsan.txt 2>&1
+    if ! grep -q "Normal:" tsan.txt; then
+        echo "SKIP  tsan $prog (did not run: $(head -1 tsan.txt))"
+    elif grep -q "WARNING: ThreadSanitizer" tsan.txt; then
         # libgomp is not TSan-instrumented, so OpenMP can report false positives
         echo "WARN  tsan $prog reported races (expected: uninstrumented libgomp barrier)"; [ $prog = pthreads ] && fail=1
     else

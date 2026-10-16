@@ -2,7 +2,7 @@
 set -e
 BIN=/app/build
 mkdir -p /results && cd /results
-for p in sequential pthreads openmp; do ln -sf $BIN/$p ./$p; done
+for p in sequential pthreads openmp overhead; do ln -sf $BIN/$p ./$p; done
 
 case "${1:-all}" in
   small)
@@ -32,6 +32,7 @@ PY
       [ -f /data/$f ] || { echo "Missing /data/$f - mount your csv folder with -v"; exit 1; }
     done
     python3 /app/python/bench.py
+    ./overhead | tee overhead.csv
     cd /
     python3 /app/python/make_results.py
     python3 /app/python/make_figures.py

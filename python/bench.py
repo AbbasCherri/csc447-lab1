@@ -1,6 +1,6 @@
 import csv, subprocess, os
 
-data_dir = "/data"
+data_dir = os.environ.get("DATA_DIR", "/data")
 files    = ["temperatures_medium.csv", "temperatures_large.csv"]
 threads  = [2, 4, 8]
 

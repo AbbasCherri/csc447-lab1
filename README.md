@@ -38,4 +38,6 @@ Give Docker all your CPU cores before running, or the 8-thread runs will share c
     cmake -S c -B build && cmake --build build
     ./build/sequential
 
+All programs are built with `gcc -O2` (set in `c/CMakeLists.txt`, including the Release build the Docker image uses). The OpenMP version uses `schedule(static)`, disables dynamic teams, and records the real team size, which `bench.py` writes to `threads_actual`.
+
 Each program asks for a file name, and the parallel ones also ask for a thread count.

@@ -1,7 +1,9 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200809L
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -117,8 +119,8 @@ static int load_csv(const char *filename, Dataset *ds)
         return -1;
     }
 
-    ds->ids   = malloc(rooms * sizeof(int));
-    ds->temps = malloc((size_t)rooms * cols * sizeof(int));
+    ds->ids   = (int *)malloc(rooms * sizeof(int));
+    ds->temps = (int *)malloc((size_t)rooms * cols * sizeof(int));
     if (!ds->ids || !ds->temps) {
         perror("malloc");
         free(line);

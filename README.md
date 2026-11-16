@@ -49,3 +49,12 @@ Each program asks for a file name, and the parallel ones also ask for a thread c
 `./runners/run.sh` runs these automatically before the benchmark and stops if one fails. Inside Docker you can run them alone with `docker compose -f docker/compose.yaml run --rm lab1 edge`.
 
 Checks all three programs on a CRLF file with no final newline, a room of exactly 30s, an all-hot room, a one-room file, more threads than rooms, and a row with too few readings. It also runs ThreadSanitizer on the Pthreads and OpenMP programs. TSan reports races for OpenMP because libgomp's barrier is not instrumented. The reported writes and reads are separated by the parallel region's implicit barrier, so these are false positives and the script only fails on Pthreads reports.
+
+## Lab 2 (MPI + CUDA, run on Google Colab)
+- `c/mpi_rooms.c` — MPI program (`mpirun -np P ./mpi_rooms file.csv`, writes `results_mpi.csv`).
+- `cuda/cuda_rooms.cu` — CUDA program (`./cuda_rooms file.csv B`, writes `results_cuda.csv`).
+- `lab2_colab.ipynb` — builds, tests and benchmarks sequential, MPI and CUDA on one Colab GPU runtime.
+  Upload `c/`, `cuda/` and `data/` to `MyDrive/lab2/`, select a GPU runtime and run all cells.
+- Build: `gcc -O2 c/sequential.c`, `mpicc -O2 c/mpi_rooms.c`, `nvcc -O2 cuda/cuda_rooms.cu`.
+- Colab has few vCPUs, so P = 4 and 8 are oversubscribed (`mpirun --oversubscribe --allow-run-as-root --bind-to none`).
+- Outputs: `benchmark_results.csv`, `speedup_mpi.{png,pdf}`, `speedup_cuda.{png,pdf}`.

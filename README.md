@@ -54,7 +54,7 @@ Checks all three programs on a CRLF file with no final newline, a room of exactl
 - `c/mpi_rooms.c` — MPI program (`mpirun -np P ./mpi_rooms file.csv`, writes `results_mpi.csv`).
 - `cuda/cuda_rooms.cu` — CUDA program (`./cuda_rooms file.csv B`, writes `results_cuda.csv`).
 - `lab2_colab.ipynb` — builds, tests and benchmarks sequential, MPI and CUDA on one Colab GPU runtime.
-  It clones this repo; put the CSVs from `data/` in `MyDrive/lab2/data/` (they are gitignored), select a GPU runtime and run all cells.
+  It clones this repo (the medium/large CSVs are stored with Git LFS), select a GPU runtime and run all cells.
 - Build: `gcc -O2 c/sequential.c`, `mpicc -O2 c/mpi_rooms.c`, `nvcc -O2 cuda/cuda_rooms.cu`.
 - Colab has few vCPUs, so P = 4 and 8 are oversubscribed (`mpirun --oversubscribe --allow-run-as-root --bind-to none`).
 - Outputs: `benchmark_results.csv`, `speedup_mpi.{png,pdf}`, `speedup_cuda.{png,pdf}`.

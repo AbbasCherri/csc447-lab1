@@ -1,5 +1,3 @@
-data/temperatures_medium.csv
-data/temperatures_large.csv
 results/sequential
 results/pthreads
 results/openmp
